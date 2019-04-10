@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import './live_list.dart';
 
-class VideoPage extends StatefulWidget {
+class LivePage extends StatefulWidget {
   @override
-  _VideoPageState createState() => new _VideoPageState();
+  _LivePageState createState() => new _LivePageState();
 }
 
-class _VideoPageState extends State<VideoPage> {
+class _LivePageState extends State<LivePage> {
   PageController _controller;
+
+  // @override
+  // bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -23,18 +27,13 @@ class _VideoPageState extends State<VideoPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        // color: Colors.red
-      ),
       child: PageView(
         controller: _controller,
         physics: ClampingScrollPhysics(),
         children: <Widget>[
+          LiveList(),
           Center(
-            child: Text('video-666', style: TextStyle(color: Colors.white)),
-          ),
-          Center(
-            child: Text('video-999', style: TextStyle(color: Colors.white)),
+            child: Text('直播推荐列表-待续', style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
