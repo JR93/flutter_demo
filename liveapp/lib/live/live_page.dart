@@ -191,6 +191,23 @@ class _LiveListState extends State<LiveList> with AutomaticKeepAliveClientMixin 
           );
         },
         itemCount: videos.length,
+        onPageChanged: (i) {
+          print('上下滑动: $i');
+          setState(() {
+            _curIndex = i;
+          });
+          liveGlobalKeys[i].currentState.play();
+          if (i - 1 >= 0) {
+            PlayerPageState videoPalyViewState =
+                liveGlobalKeys[i - 1].currentState;
+            if (videoPalyViewState != null) videoPalyViewState.pause();
+          }
+          if (i + 1 < videos.length) {
+            PlayerPageState videoPalyViewState =
+                liveGlobalKeys[i + 1].currentState;
+            if (videoPalyViewState != null) videoPalyViewState.pause();
+          }
+        },
       ),
     );
   }

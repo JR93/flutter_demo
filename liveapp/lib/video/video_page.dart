@@ -50,7 +50,7 @@ class VideoPageState extends State<VideoPage> with AutomaticKeepAliveClientMixin
         children: <Widget>[
           VideoList(key: videoListStateKey),
           Center(
-            child: Text('主播个人主页-待续', style: TextStyle(color: Colors.white)),
+            child: Text('视频推荐列表-待续', style: TextStyle(color: Colors.white)),
           ),
         ],
         onPageChanged: (i) {
@@ -194,18 +194,19 @@ class VideoListState extends State<VideoList> with AutomaticKeepAliveClientMixin
             _curIndex = i;
           });
           videoGlobalKeys[i].currentState.play();
-          // if (i - 1 >= 0) {
-          //   PlayerPageState videoPalyViewState =
-          //       videoGlobalKeys[i - 1].currentState;
-          //   if (videoPalyViewState != null) videoPalyViewState.pause();
-          // }
-          // if (i + 1 < videos.length) {
-          //   PlayerPageState videoPalyViewState =
-          //       videoGlobalKeys[i + 1].currentState;
-          //   if (videoPalyViewState != null) videoPalyViewState.pause();
-          // }
+          if (i - 1 >= 0) {
+            PlayerPageState videoPalyViewState =
+                videoGlobalKeys[i - 1].currentState;
+            if (videoPalyViewState != null) videoPalyViewState.pause();
+          }
+          if (i + 1 < videos.length) {
+            PlayerPageState videoPalyViewState =
+                videoGlobalKeys[i + 1].currentState;
+            if (videoPalyViewState != null) videoPalyViewState.pause();
+          }
         },
       ),
     );
   }
 }
+
