@@ -11,6 +11,7 @@ class _HomePageState extends State<HomePage> {
   int _index = 0;
 
   GlobalKey<VideoPageState> videoPageStateKey = new GlobalKey();
+  GlobalKey<LivePageState> livePageStateKey = new GlobalKey();
 
   @override
   void initState() {
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
               physics: NeverScrollableScrollPhysics(),
               controller: _controller,
               children: <Widget>[
-                LivePage(),
+                LivePage(key: livePageStateKey),
                 VideoPage(key: videoPageStateKey)
               ],
               onPageChanged: (index) {
@@ -44,11 +45,17 @@ class _HomePageState extends State<HomePage> {
                 });
                 if (index == 0) {
                   if (videoPageStateKey.currentState != null) {
-                    videoPageStateKey.currentState.stop();
+                    videoPageStateKey.currentState.pause();
+                  }
+                  if (livePageStateKey.currentState != null) {
+                    livePageStateKey.currentState.play();
                   }
                 } else {
                   if (videoPageStateKey.currentState != null) {
                     videoPageStateKey.currentState.play();
+                  }
+                  if (livePageStateKey.currentState != null) {
+                    livePageStateKey.currentState.pause();
                   }
                 }
               },

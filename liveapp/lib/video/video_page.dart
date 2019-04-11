@@ -23,9 +23,9 @@ class VideoPageState extends State<VideoPage> with AutomaticKeepAliveClientMixin
     _controller = new PageController();
   }
 
-  stop() {
+  pause() {
     if (videoListStateKey.currentState != null) {
-      videoListStateKey.currentState.stop();
+      videoListStateKey.currentState.pause();
     }
   }
 
@@ -58,7 +58,7 @@ class VideoPageState extends State<VideoPage> with AutomaticKeepAliveClientMixin
           if (i == 0) {
             play();
           } else {
-            stop();
+            pause();
           }
         },
       ),
@@ -104,7 +104,7 @@ class VideoListState extends State<VideoList> with AutomaticKeepAliveClientMixin
     _controller.dispose();
   }
 
-  stop() {
+  pause() {
     print('短视频左右切换调用: $_curIndex');
     print('短视频左右切换调用: ${videoGlobalKeys[_curIndex].currentState}');
     videoGlobalKeys[_curIndex].currentState.pause();
