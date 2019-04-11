@@ -46,7 +46,7 @@ class VideoPageState extends State<VideoPage> with AutomaticKeepAliveClientMixin
     return Container(
       child: PageView(
         controller: _controller,
-        physics: ClampingScrollPhysics(),
+        // physics: null,
         children: <Widget>[
           VideoList(key: videoListStateKey),
           Center(
@@ -121,7 +121,7 @@ class VideoListState extends State<VideoList> with AutomaticKeepAliveClientMixin
     return Container(
       child: PageView.builder(
         scrollDirection: Axis.vertical,
-        physics: BouncingScrollPhysics(),
+        // physics: BouncingScrollPhysics(),
         itemBuilder: (context, i) {
           return Container(
             child: Stack(

@@ -45,7 +45,8 @@ class LivePageState extends State<LivePage> with AutomaticKeepAliveClientMixin {
     return Container(
       child: PageView(
         controller: _controller,
-        physics: ClampingScrollPhysics(),
+        // physics: null,
+        // physics: ClampingScrollPhysics(),
         children: <Widget>[
           LiveList(key: liveListStateKey),
           Center(
@@ -112,7 +113,7 @@ class _LiveListState extends State<LiveList> with AutomaticKeepAliveClientMixin 
     return Container(
       child: PageView.builder(
         scrollDirection: Axis.vertical,
-        physics: BouncingScrollPhysics(),
+        // physics: BouncingScrollPhysics(),
         itemBuilder: (context, i) {
           return Container(
             child: Stack(
