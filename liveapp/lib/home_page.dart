@@ -43,21 +43,6 @@ class _HomePageState extends State<HomePage> {
                 setState(() {
                   _index = index;
                 });
-                if (index == 0) {
-                  if (videoPageStateKey.currentState != null) {
-                    videoPageStateKey.currentState.pause();
-                  }
-                  if (livePageStateKey.currentState != null) {
-                    livePageStateKey.currentState.play();
-                  }
-                } else {
-                  if (videoPageStateKey.currentState != null) {
-                    videoPageStateKey.currentState.play();
-                  }
-                  if (livePageStateKey.currentState != null) {
-                    livePageStateKey.currentState.pause();
-                  }
-                }
               },
             ),
           ),
@@ -74,7 +59,15 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   GestureDetector(
-                    onTap: () => _controller.jumpToPage(0),
+                    onTap: () {
+                      _controller.jumpToPage(0);
+                      if (videoPageStateKey.currentState != null) {
+                        videoPageStateKey.currentState.pause();
+                      }
+                      if (livePageStateKey.currentState != null) {
+                        livePageStateKey.currentState.play();
+                      }
+                    },
                     child: NavText('看直播', _index == 0),
                   ),
                   Container(
@@ -85,7 +78,15 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => _controller.jumpToPage(1),
+                    onTap: () {
+                      _controller.jumpToPage(1);
+                      if (videoPageStateKey.currentState != null) {
+                        videoPageStateKey.currentState.play();
+                      }
+                      if (livePageStateKey.currentState != null) {
+                        livePageStateKey.currentState.pause();
+                      }
+                    },
                     child: NavText('短视频', _index == 1),
                   )
                 ],
