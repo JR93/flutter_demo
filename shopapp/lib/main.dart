@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 
+import 'package:shopapp/components/horizontal_listview.dart';
+import 'package:shopapp/components/products.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -35,11 +38,13 @@ class _HomePageState extends State<HomePage> {
         ],
         autoplay: false,
         dotSize: 4.0,
+        dotBgColor: Colors.transparent,
         indicatorBgPadding: 2.0,
         // animationCurve: Curves.fastOutSlowIn,
         // animationDuration: Duration(milliseconds: 1000),
       ),
     );
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
@@ -91,8 +96,8 @@ class _HomePageState extends State<HomePage> {
             InkWell(
               onTap: (){},
               child: ListTile(
-                title: Text('Categoris'),
-                leading: Icon(Icons.dashboard, color: Colors.red),
+                title: Text('Shopping cart'),
+                leading: Icon(Icons.shopping_cart, color: Colors.red),
               ),
             ),
             InkWell(
@@ -114,7 +119,7 @@ class _HomePageState extends State<HomePage> {
               onTap: (){},
               child: ListTile(
                 title: Text('About'),
-                leading: Icon(Icons.help, color: Colors.blue),
+                leading: Icon(Icons.help),
               ),
             ),
           ],
@@ -122,7 +127,23 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView(
         children: <Widget>[
-          imageCarousel
+          // 轮播图
+          imageCarousel,
+          // 分类
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Categories'),
+          ),
+          HorizontalList(),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text('Recent Products'),
+          ),
+          Container(
+            height: 320.0,
+            child: Products(),
+          ),
+
         ],
       ),
     );
